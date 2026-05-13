@@ -4,26 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>THE LATENCY GAP | Project Log</title>
+    
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;500&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
     <style>
         :root {
             --bg-color: #0b0e14;
-            --text-color: #e6edf3;
+            --text-color: #adbac7;
             --accent-color: #58a6ff;
             --terminal-green: #3fb950;
+            --card-bg: #161b22;
+            --border-color: #30363d;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
             background-color: var(--bg-color);
             color: var(--text-color);
             font-family: 'Inter', sans-serif;
-            line-height: 1.6;
+            line-height: 1.8;
             margin: 0;
             overflow-x: hidden;
         }
 
+        /* --- HEADER SECTION --- */
         .header {
             height: 100vh;
             display: flex;
@@ -32,13 +45,14 @@
             align-items: center;
             text-align: center;
             background: radial-gradient(circle at center, #1c2128 0%, #0b0e14 100%);
+            padding: 20px;
         }
 
         h1 {
             font-family: 'Fira Code', monospace;
-            font-size: 4rem;
+            font-size: clamp(2rem, 8vw, 4rem);
             color: var(--accent-color);
-            margin-bottom: 0;
+            margin-bottom: 10px;
             text-transform: uppercase;
             letter-spacing: 5px;
         }
@@ -46,46 +60,102 @@
         .subtitle {
             font-family: 'Fira Code', monospace;
             color: var(--terminal-green);
-            opacity: 0.8;
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            letter-spacing: 1px;
         }
 
+        /* --- THE BUTTON --- */
+        .start-btn {
+            padding: 15px 35px;
+            font-family: 'Fira Code', monospace;
+            font-size: 1.2rem;
+            color: var(--terminal-green);
+            text-decoration: none;
+            border: 2px solid var(--terminal-green);
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            background: transparent;
+            margin-bottom: 50px;
+        }
+
+        .start-btn:hover {
+            background: rgba(63, 185, 80, 0.1);
+            box-shadow: 0 0 25px rgba(63, 185, 80, 0.5);
+            transform: scale(1.05);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.8rem;
+            opacity: 0.5;
+            animation: bounce 2s infinite;
+        }
+
+        /* --- CONTENT SECTION --- */
         .container {
-            max-width: 800px;
+            max-width: 850px;
             margin: 0 auto;
-            padding: 100px 20px;
+            padding: 100px 25px;
         }
 
         .chapter-card {
-            background: #161b22;
-            border: 1px solid #30363d;
-            border-radius: 10px;
-            padding: 40px;
-            margin-bottom: 50px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: clamp(20px, 5vw, 60px);
+            margin-bottom: 80px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+        }
+
+        h2 {
+            font-family: 'Fira Code', monospace;
+            color: var(--accent-color);
+            font-size: 1.8rem;
+            margin-top: 0;
         }
 
         .ai-log {
             background: #010409;
             border-left: 4px solid var(--terminal-green);
-            padding: 15px;
+            padding: 20px;
             font-family: 'Fira Code', monospace;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: var(--terminal-green);
-            margin: 20px 0;
+            margin: 30px 0;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.4;
         }
 
-        p { font-size: 1.1rem; margin-bottom: 1.5rem; color: #adbac7; }
-
-        .scroll-indicator {
-            position: absolute;
-            bottom: 30px;
-            animation: bounce 2s infinite;
+        p {
+            font-size: 1.15rem;
+            margin-bottom: 1.6rem;
         }
 
+        .dropcap {
+            float: left;
+            font-size: 3.5rem;
+            line-height: 1;
+            padding-right: 12px;
+            color: var(--accent-color);
+            font-family: 'Fira Code', monospace;
+        }
+
+        /* --- ANIMATIONS --- */
         @keyframes bounce {
             0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
             40% {transform: translateY(-10px);}
             60% {transform: translateY(-5px);}
+        }
+
+        footer {
+            text-align: center;
+            padding-bottom: 50px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.8rem;
+            opacity: 0.4;
         }
     </style>
 </head>
@@ -94,35 +164,62 @@
     <section class="header">
         <h1 data-aos="zoom-in">THE LATENCY GAP</h1>
         <p class="subtitle" data-aos="fade-up" data-aos-delay="400">STATUS: SIGNAL UNSTABLE | LATENCY: 1.28s</p>
-        <div class="scroll-indicator">▼ Scroll to Sync</div>
+        
+        <a href="#chapter1" class="start-btn" data-aos="fade-up" data-aos-delay="800">
+            > INITIALIZE_LINK_
+        </a>
+
+        <div class="scroll-indicator">▼ Syncing telemetry...</div>
     </section>
 
-    <div class="container">
-        <div class="chapter-card" data-aos="fade-right">
+    <div class="container" id="chapter1">
+        
+        <div class="chapter-card" data-aos="fade-up">
             <h2>Chapter 1: The Speed of Light is a Jerk</h2>
             
             <div class="ai-log">
                 [SYSTEM LOG: 11:54 PM] <br>
                 UPLINK-4 STATUS: ACTIVE <br>
-                REFLECTOR: APOLLO 11 MIRROR <br>
-                ANOMALY DETECTED: +50μs
+                REFLECTOR: APOLLO 11 MIRROR (TRANQUILITY BASE) <br>
+                ANOMALY DETECTED: +50μs PACKET INJECTION
             </div>
 
-            <p>The problem with the speed of light is that it’s too slow.</p>
+            <p><span class="dropcap">T</span>he problem with the speed of light is that it’s too slow.</p>
             
-            <p>Earth is 384,400 kilometers away. Light takes roughly 1.28 seconds to get there. That means if I send a "Hello" to my mom in Sammamish, her response takes a total round-trip of 2.56 seconds. That's a lot of time for her to think of a way to tell me I should have been a doctor instead.</p>
+            <p>That sounds like a "first-world space problem," but sit in my chair for ten minutes and you’ll agree. Earth is 384,400 kilometers away. Light takes roughly 1.28 seconds to get there. That means if I send a "Hello" to my mom in Sammamish, it takes 1.28 seconds to travel, she takes five minutes to ignore it, and her "Why aren't you a doctor?" response takes another 1.28 seconds to come back.</p>
+
+            <p>Total round-trip latency: 2.56 seconds plus maternal disappointment.</p>
+
+            <p>I spend my nights at the Lunar Gateway monitoring the laser-comms. It’s a boring job. I watch the Deep Space Network (DSN) pulses bounce off the lunar reflectors and head back to the Canberra station on Earth. It’s just photons moving through a vacuum.</p>
+
+            <p>Except tonight, the math is broken.</p>
+
+            <p>I ran a diagnostic on the Uplink-4 laser. The bounce-back should have been a clean 2.56214 seconds. Instead, the return ping came in at 2.56219.</p>
+
+            <p>That’s a difference of 50 microseconds. In the networking world, 50 microseconds is a lifetime. It’s the difference between a clean packet and a total system crash. If the distance hadn't changed and the environment hadn't changed, then the speed of light had to have changed. And since I’m pretty sure physics doesn't just "take a night off," there was only one other option.</p>
+
+            <p>Something was catching my data mid-flight.</p>
         </div>
 
-        <div class="chapter-card" data-aos="fade-left">
-            <p style="text-align: center; opacity: 0.5;">[ CHAPTER 2 ENCRYPTED - STANDBY FOR PING ]</p>
+        <div class="chapter-card" data-aos="fade-up" style="border-style: dashed; opacity: 0.6;">
+            <p style="text-align: center; font-family: 'Fira Code', monospace;">
+                [ CHAPTER 2 ENCRYPTED ]<br>
+                AWAITING NEXT COMMIT...
+            </p>
         </div>
+
     </div>
+
+    <footer>
+        &copy; 2026. Published via GitHub Repositories.
+    </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
       AOS.init({
         duration: 1000,
         once: false,
+        mirror: true
       });
     </script>
 </body>
