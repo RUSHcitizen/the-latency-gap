@@ -2,27 +2,54 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>THE LATENCY GAP | TERMINAL</title>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THE LATENCY GAP | HOME</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
-        body { background: #0d1117; color: #3fb950; font-family: 'Fira Code', monospace; padding: 50px; }
-        .menu { max-width: 600px; margin: 0 auto; border: 1px solid #30363d; padding: 30px; background: #161b22; }
-        h1 { color: #58a6ff; border-bottom: 1px solid #30363d; padding-bottom: 10px; }
-        .chapter-link { display: block; padding: 15px; color: #c9d1d9; text-decoration: none; border: 1px solid transparent; }
-        .chapter-link:hover { border: 1px solid #3fb950; background: #0d1117; color: #3fb950; }
-        .status { font-size: 0.8rem; color: #8b949e; margin-top: 20px; }
+        :root { --bg: #0d1117; --text: #c9d1d9; --blue: #58a6ff; --green: #3fb950; --border: #30363d; }
+        body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; margin: 0; overflow-x: hidden; }
+        
+        /* Hero Section */
+        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: radial-gradient(circle at center, #161b22 0%, #0d1117 100%); }
+        .hero h1 { font-family: 'Fira Code', monospace; font-size: 3.5rem; color: var(--blue); margin: 0; }
+        .scroll-indicator { margin-top: 50px; font-family: 'Fira Code', monospace; color: var(--green); animation: blink 2s infinite; }
+        
+        /* Menu Section (Hidden down the page) */
+        .menu-section { min-height: 100vh; padding: 100px 20px; display: flex; flex-direction: column; align-items: center; }
+        .terminal-box { width: 100%; max-width: 800px; background: #010409; border: 1px solid var(--border); border-radius: 6px; padding: 40px; box-sizing: border-box; }
+        .chapter-link { display: block; padding: 20px; border: 1px solid var(--border); margin-bottom: 15px; color: var(--text); text-decoration: none; font-family: 'Fira Code', monospace; transition: 0.3s; }
+        .chapter-link:hover { border-color: var(--green); background: #161b22; transform: translateX(10px); color: var(--green); }
+        
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
     </style>
 </head>
 <body>
-    <div class="menu">
-        <h1>DIRECTORY: /STORIES/LATENCY_GAP</h1>
-        <p>Select a node to begin sequence:</p>
-        
-        <a href="reading.html" class="chapter-link">01_THE_SPEED_OF_LIGHT_IS_A_JERK [ACTIVE]</a>
-        <a href="#" class="chapter-link" style="opacity: 0.5;">02_THE_NON_LOCALITY_PRINCIPLE [LOCKED]</a>
-        <a href="#" class="chapter-link" style="opacity: 0.5;">03_SYNC_SHOCK [LOCKED]</a>
 
-        <div class="status">SYSTEM STATUS: ALL NODES OPERATIONAL<br>USER: GUEST_01</div>
+    <div class="hero">
+        <h1 data-aos="zoom-in">THE LATENCY GAP</h1>
+        <p data-aos="fade-up" data-aos-delay="400">Physics is the ultimate firewall.</p>
+        <div class="scroll-indicator"> [ SCROLL_TO_DECRYPT ] </div>
     </div>
+
+    <div class="menu-section" id="chapters">
+        <div class="terminal-box" data-aos="fade-up">
+            <h2 style="font-family: 'Fira Code', monospace; color: var(--blue);">/root/stories/</h2>
+            <p style="color: #8b949e; margin-bottom: 30px;">Select a sequence to initiate neural upload:</p>
+            
+            <a href="reading.html" class="chapter-link">
+                <span style="color: var(--green);">01.</span> THE_SPEED_OF_LIGHT_IS_A_JERK
+            </a>
+            
+            <a href="#" class="chapter-link" style="opacity: 0.4; cursor: not-allowed;">
+                <span style="color: #8b949e;">02.</span> THE_QUANTUM_HANDSHAKE [LOCKED]
+            </a>
+
+            <p style="font-size: 0.8rem; color: #484f58; margin-top: 20px;">SYSTEM_STATUS: STABLE // PING: 1.2ms</p>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>AOS.init({ duration: 1000 });</script>
 </body>
 </html>
