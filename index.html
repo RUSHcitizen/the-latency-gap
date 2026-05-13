@@ -2,55 +2,27 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>THE LATENCY GAP | Project Log</title>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;500&family=Inter:wght@400;700&display=swap" rel="stylesheet">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <title>THE LATENCY GAP | TERMINAL</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --bg-color: #0b0e14;
-            --accent-color: #58a6ff;
-            --terminal-green: #3fb950;
-        }
-        body, html {
-            margin: 0; padding: 0; height: 100%;
-            background-color: var(--bg-color);
-            color: white; font-family: 'Inter', sans-serif;
-            overflow: hidden; /* Keeps the landing page tight */
-        }
-        .hero {
-            height: 100vh; display: flex; flex-direction: column;
-            justify-content: center; align-items: center; text-align: center;
-            background: radial-gradient(circle at center, #1c2128 0%, #0b0e14 100%);
-        }
-        h1 {
-            font-family: 'Fira Code', monospace; font-size: clamp(2rem, 10vw, 5rem);
-            color: var(--accent-color); letter-spacing: 8px; margin: 0;
-        }
-        .glitch-text {
-            font-family: 'Fira Code', monospace; color: var(--terminal-green);
-            margin-bottom: 40px; opacity: 0.8;
-        }
-        .enter-btn {
-            padding: 20px 40px; font-family: 'Fira Code', monospace;
-            font-size: 1.2rem; color: var(--terminal-green);
-            border: 2px solid var(--terminal-green); text-decoration: none;
-            transition: all 0.3s; background: transparent; cursor: pointer;
-        }
-        .enter-btn:hover {
-            background: rgba(63, 185, 80, 0.1);
-            box-shadow: 0 0 30px rgba(63, 185, 80, 0.5);
-            transform: scale(1.1);
-        }
+        body { background: #0d1117; color: #3fb950; font-family: 'Fira Code', monospace; padding: 50px; }
+        .menu { max-width: 600px; margin: 0 auto; border: 1px solid #30363d; padding: 30px; background: #161b22; }
+        h1 { color: #58a6ff; border-bottom: 1px solid #30363d; padding-bottom: 10px; }
+        .chapter-link { display: block; padding: 15px; color: #c9d1d9; text-decoration: none; border: 1px solid transparent; }
+        .chapter-link:hover { border: 1px solid #3fb950; background: #0d1117; color: #3fb950; }
+        .status { font-size: 0.8rem; color: #8b949e; margin-top: 20px; }
     </style>
 </head>
 <body>
-    <section class="hero">
-        <h1 data-aos="zoom-out" data-aos-duration="1500">THE LATENCY GAP</h1>
-        <p class="glitch-text" data-aos="fade-up" data-aos-delay="500">> DISTANCE: 384,400 KM | LUNAR_STATUS: NOMINAL</p>
-        <a href="reading.html" class="enter-btn" data-aos="fade-up" data-aos-delay="1000">> INITIALIZE_READ_PROTOCOL_</a>
-    </section>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>AOS.init();</script>
+    <div class="menu">
+        <h1>DIRECTORY: /STORIES/LATENCY_GAP</h1>
+        <p>Select a node to begin sequence:</p>
+        
+        <a href="reading.html" class="chapter-link">01_THE_SPEED_OF_LIGHT_IS_A_JERK [ACTIVE]</a>
+        <a href="#" class="chapter-link" style="opacity: 0.5;">02_THE_NON_LOCALITY_PRINCIPLE [LOCKED]</a>
+        <a href="#" class="chapter-link" style="opacity: 0.5;">03_SYNC_SHOCK [LOCKED]</a>
+
+        <div class="status">SYSTEM STATUS: ALL NODES OPERATIONAL<br>USER: GUEST_01</div>
+    </div>
 </body>
 </html>
