@@ -3,25 +3,132 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>THE LATENCY GAP | HOME</title>
+    <title>THE LATENCY GAP | MISSION CONTROL</title>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
-        :root { --bg: #0d1117; --text: #c9d1d9; --blue: #58a6ff; --green: #3fb950; --border: #30363d; }
-        body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; margin: 0; overflow-x: hidden; }
+        :root { 
+            --bg: #0d1117; 
+            --text: #c9d1d9; 
+            --blue: #58a6ff; 
+            --green: #3fb950; 
+            --border: #30363d; 
+            --locked: #484f58;
+        }
+        
+        body { 
+            background: var(--bg); 
+            color: var(--text); 
+            font-family: 'Inter', sans-serif; 
+            margin: 0; 
+            overflow-x: hidden; 
+            scroll-behavior: smooth;
+        }
         
         /* Hero Section */
-        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: radial-gradient(circle at center, #161b22 0%, #0d1117 100%); }
-        .hero h1 { font-family: 'Fira Code', monospace; font-size: 3.5rem; color: var(--blue); margin: 0; }
-        .scroll-indicator { margin-top: 50px; font-family: 'Fira Code', monospace; color: var(--green); animation: blink 2s infinite; }
+        .hero { 
+            height: 100vh; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+            text-align: center; 
+            background: radial-gradient(circle at center, #161b22 0%, #0d1117 100%); 
+        }
         
-        /* Menu Section (Hidden down the page) */
-        .menu-section { min-height: 100vh; padding: 100px 20px; display: flex; flex-direction: column; align-items: center; }
-        .terminal-box { width: 100%; max-width: 800px; background: #010409; border: 1px solid var(--border); border-radius: 6px; padding: 40px; box-sizing: border-box; }
-        .chapter-link { display: block; padding: 20px; border: 1px solid var(--border); margin-bottom: 15px; color: var(--text); text-decoration: none; font-family: 'Fira Code', monospace; transition: 0.3s; }
-        .chapter-link:hover { border-color: var(--green); background: #161b22; transform: translateX(10px); color: var(--green); }
+        .hero h1 { 
+            font-family: 'Fira Code', monospace; 
+            font-size: clamp(2rem, 8vw, 4rem); 
+            color: var(--blue); 
+            margin: 0; 
+            letter-spacing: 4px;
+        }
+        
+        .hero p {
+            font-family: 'Fira Code', monospace;
+            color: var(--green);
+            margin-top: 10px;
+        }
+
+        .scroll-indicator { 
+            margin-top: 50px; 
+            font-family: 'Fira Code', monospace; 
+            color: var(--green); 
+            animation: blink 2s infinite; 
+            text-decoration: none;
+            border: 1px solid var(--green);
+            padding: 10px 20px;
+            transition: 0.3s;
+        }
+
+        .scroll-indicator:hover {
+            background: rgba(63, 185, 80, 0.1);
+        }
+        
+        /* Menu Section */
+        .menu-section { 
+            min-height: 100vh; 
+            padding: 80px 20px; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+        }
+        
+        .terminal-box { 
+            width: 100%; 
+            max-width: 900px; 
+            background: #010409; 
+            border: 1px solid var(--border); 
+            border-radius: 6px; 
+            padding: 30px; 
+            box-sizing: border-box; 
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+        
+        .chapter-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .chapter-link { 
+            display: flex; 
+            justify-content: space-between;
+            padding: 15px 20px; 
+            border: 1px solid var(--border); 
+            color: var(--text); 
+            text-decoration: none; 
+            font-family: 'Fira Code', monospace; 
+            transition: 0.2s; 
+            font-size: 0.9rem;
+        }
+        
+        .chapter-link:hover:not(.locked) { 
+            border-color: var(--green); 
+            background: #161b22; 
+            transform: translateX(5px); 
+            color: var(--green); 
+        }
+
+        .locked {
+            opacity: 0.3;
+            cursor: not-allowed;
+            border-style: dashed;
+        }
         
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+        .stats-bar {
+            display: flex;
+            justify-content: space-between;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.75rem;
+            color: var(--locked);
+            margin-top: 30px;
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+        }
     </style>
 </head>
 <body>
@@ -29,23 +136,50 @@
     <div class="hero">
         <h1 data-aos="zoom-in">THE LATENCY GAP</h1>
         <p data-aos="fade-up" data-aos-delay="400">Physics is the ultimate firewall.</p>
-        <div class="scroll-indicator"> [ SCROLL_TO_DECRYPT ] </div>
+        <a href="#chapters" class="scroll-indicator"> [ ACCESS_ARCHIVE ] </a>
     </div>
 
     <div class="menu-section" id="chapters">
         <div class="terminal-box" data-aos="fade-up">
-            <h2 style="font-family: 'Fira Code', monospace; color: var(--blue);">/root/stories/</h2>
-            <p style="color: #8b949e; margin-bottom: 30px;">Select a sequence to initiate neural upload:</p>
+            <h2 style="font-family: 'Fira Code', monospace; color: var(--blue); margin: 0;">/root/manifesto/</h2>
+            <p style="color: #8b949e; margin-bottom: 30px; font-size: 0.9rem;">Sequential data blocks detected. 42 segments total.</p>
             
-            <a href="chapter1.html" class="chapter-link">
-                <span style="color: var(--green);">01.</span> THE_SPEED_OF_LIGHT_IS_A_JERK
-            </a>
-            
-            <a href="#" class="chapter-link" style="opacity: 0.4; cursor: not-allowed;">
-                <span style="color: #8b949e;">02.</span> THE_QUANTUM_HANDSHAKE [LOCKED]
-            </a>
+            <div class="chapter-grid">
+                <a href="reading.html" class="chapter-link">
+                    <span>01. THE_SPEED_OF_LIGHT_IS_A_JERK</span>
+                    <span style="color: var(--green);">[READ]</span>
+                </a>
+                
+                <a href="chapter2.html" class="chapter-link">
+                    <span>02. THE_QUANTUM_HANDSHAKE</span>
+                    <span style="color: var(--green);">[READ]</span>
+                </a>
 
-            <p style="font-size: 0.8rem; color: #484f58; margin-top: 20px;">SYSTEM_STATUS: STABLE // PING: 1.2ms</p>
+                <a href="#" class="chapter-link locked">
+                    <span>03. CAUSALITY_OVERRIDE</span>
+                    <span>[LOCKED]</span>
+                </a>
+
+                <a href="#" class="chapter-link locked">
+                    <span>04. PACKET_LOSS_REALITY_LOSS</span>
+                    <span>[LOCKED]</span>
+                </a>
+
+                <div style="text-align: center; padding: 20px; color: var(--locked); font-family: 'Fira Code'; font-size: 0.8rem;">
+                    ... CHAPTERS 05 - 41 ENCRYPTED ...
+                </div>
+
+                <a href="#" class="chapter-link locked">
+                    <span>42. REBOOT_UNIVERSE_FINAL</span>
+                    <span>[LOCKED]</span>
+                </a>
+            </div>
+
+            <div class="stats-bar">
+                <span>BUILD: v1.0.4-STABLE</span>
+                <span>LOCATION: SAMMAMISH_NODE_L1</span>
+                <span>STATUS: WRITING_IN_PROGRESS</span>
+            </div>
         </div>
     </div>
 
